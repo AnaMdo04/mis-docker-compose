@@ -1,0 +1,29 @@
+version: "3"
+services:
+  # Servicio para el contenedor de MongoDB
+  mi-mongo:
+    image: mongo
+    networks:
+      - mi-red
+    volumes:
+      - mi-volumen:/data/db
+
+  # Servicio para el contenedor de MongoDB Express
+  mi-mongo-express:
+    image: mongo-express
+    networks:
+      - mi-red
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mi-mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+
+networks:
+  # Definición de la red que ambos contenedores compartirán
+  mi-red:
+    driver: bridge
+
+volumes:
+  # Definición del volumen para persistir los datos de MongoDB
+  mi-volumen:
