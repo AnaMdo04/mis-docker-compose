@@ -1,17 +1,20 @@
-# Utiliza la imagen oficial de Node.js versión 14
+# Utilizamos la imagen oficial de Node.js 14
 FROM node:14
 
-# Crea el directorio de la aplicación en el contenedor
+# Establecemos el directorio de trabajo dentro del contenedor
 WORKDIR /var/app
 
-# Copia los archivos necesarios para la aplicación
-COPY . .
+# Copiamos el archivo package.json y package-lock.json para instalar las dependencias
+COPY package*.json ./
 
-# Instala las dependencias
+# Instalamos las dependencias
 RUN npm install
 
-# Expone el puerto 8080
+# Copiamos el resto de los archivos al directorio de trabajo
+COPY . .
+
+# Exponemos el puerto 8080
 EXPOSE 8080
 
-# Comando para arrancar el proyecto
+# Comando para iniciar la aplicación
 CMD ["npm", "start"]
