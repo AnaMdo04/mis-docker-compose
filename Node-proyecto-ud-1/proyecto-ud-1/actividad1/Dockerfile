@@ -8,6 +8,7 @@ WORKDIR /var/app
 COPY package*.json ./
 
 # Instalamos las dependencias
+RUN npm install -g nodemon
 RUN npm install
 
 # Copiamos el resto de los archivos al directorio de trabajo
