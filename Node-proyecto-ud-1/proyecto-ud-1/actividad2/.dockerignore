@@ -1,0 +1,4 @@
+# Creamos un archivo .dockerignore para ignorar node_modules y archivos .log
+
+node_modules
+*.log
